@@ -1,7 +1,3 @@
-Here’s a professional **README.md** you can use for your project:
-
----
-
 # 📚 Wikipedia Article Discussor
 
 An interactive **Streamlit web app** that lets you **search, scrape, and discuss Wikipedia articles** using an LLM (via LangChain + Ollama).
@@ -116,13 +112,3 @@ You can adjust settings in `config.py` (to be created):
    * Store it in the directory
    * Use semantic search to fetch relevant passages
 4. View scraped articles in the **Article** tab
-
----
-
-## 📄 License
-
-MIT License — feel free to use and adapt this project.
-
----
-
-👉 Do you want me to also add **screenshots / demo GIF placeholders** in the README so it looks more polished when uploaded to GitHub?
