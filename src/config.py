@@ -1,6 +1,7 @@
 # src/your_project/config.py
 
 # --- LLM Settings ---
+LLM_ENGINE = "https://colab.research.google.com/drive/1KUwQadyT5acXY13u17xEKsb8ciKOEq_0?usp=sharing"
 LLM_MODEL = "qwen2.5:7b"
 EMBEDDING_MODEL = "nomic-embed-text"
 

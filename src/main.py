@@ -9,6 +9,8 @@ def init_session_state():
         "vector_store": None,
         "article_in_directory": [],
         "is_tool_called": False,
+        "llm": None,
+        "embeddings": None
     }
     for key, value in defaults.items():
         st.session_state.setdefault(key, value)

@@ -7,11 +7,11 @@ from service.scraper import (
     search_wikipedia_article,
     searh_in_article,
 )
-
+import streamlit as st
 
 # --- Model Setup ---
-chat = ChatOllama(model=LLM_MODEL)
-
+def init_llm(url):
+    st.session_state.llm = ChatOllama(model=LLM_MODEL, base_url=url)
 
 # --- Tools ---
 tools = {t.name: t for t in [add_wikipedia_article, search_wikipedia_article, searh_in_article]}
@@ -77,7 +77,7 @@ def response_generator(
     onerror = onerror or (lambda reason: None)
 
     try:
-        stream = chat.stream(context)
+        stream = st.session_state.llm.stream(context)
         first_chunk = next(stream, None)
 
         if not first_chunk or not first_chunk.content:
@@ -117,7 +117,7 @@ def response_generator(
                     )
 
                     # Continue model stream with updated context
-                    stream = chat.stream(context)
+                    stream = st.session_state.llm.stream(context)
                     for chunk in stream:
                         if chunk.content:
                             yield chunk.content

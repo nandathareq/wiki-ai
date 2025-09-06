@@ -16,7 +16,8 @@ from config import REQUEST_HEADERS, WIKI_URL_PATTERN, RETRIEVER_K,EMBEDDING_MODE
 nltk.download("punkt", quiet=True)
 
 # Embeddings model
-embeddings = OllamaEmbeddings(model=EMBEDDING_MODEL)
+def init_embeddings(url):
+    st.session_state.embeddings = OllamaEmbeddings(model=EMBEDDING_MODEL, base_url=url)
 
 
 @tool
@@ -143,7 +144,7 @@ def add_wikipedia_article(url : str) -> str:
     # Build FAISS retriever
     dict_str = json.dumps(session_state["data"], indent=4)
     docs = [Document(page_content=sent) for sent in sent_tokenize(dict_str)]
-    session_state["vector_store"] = FAISS.from_documents(docs, embeddings).as_retriever(
+    session_state["vector_store"] = FAISS.from_documents(docs, st.session_state.embeddings).as_retriever(
         search_kwargs={"k": RETRIEVER_K}
     )
 
